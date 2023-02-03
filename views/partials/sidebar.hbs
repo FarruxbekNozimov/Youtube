@@ -13,15 +13,23 @@
 			</li>
 		</a>
 		<hr class="sidebarSidebarHr" />
-		<h4 class="sidebarTitle"><i class="bi bi-person-fill"></i>
-			Subscriptions</h4>
-		<a href="" class="sidebarLink">
-			<li class="sidebarItem">
-				<div class="sidebarIcon">
-					<img src="/img/1.png" alt="" class="sidebarAvatarImg" />
-				</div>
-				<div class="sidebarText">Khaby Lame</div>
-			</li>
-		</a>
+		<h4 class="sidebarTitle">
+			<i class="bi bi-person-fill"></i>
+			Subscriptions
+		</h4>
+		{{#each users}}
+			<a href="/users/{{username}}" class="sidebarLink">
+				<li class="sidebarItem">
+					<div class="sidebarIcon">
+						<img
+							src="/avatars/{{avatar}}"
+							alt="avatarImg"
+							class="sidebarAvatarImg"
+						/>
+					</div>
+					<div class="sidebarText">{{username}}</div>
+				</li>
+			</a>
+		{{/each}}
 	</ul>
 </div>

@@ -7,6 +7,10 @@ const cookieParser = require("cookie-parser");
 
 // REQUIRE ROUTES
 const AuthRoute = require("./routes/auth.js");
+const UserRoute = require("./routes/user.js");
+
+// REQUIRE MIDDLEWARE
+const UserMiddleware = require("./middleware/user.js");
 
 const hbs = create({
 	defaultLayout: "main",
@@ -25,12 +29,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// USE MIDDLEWARE
+app.use(UserMiddleware);
+
 // USE ROUTES
 app.use(AuthRoute);
+app.use(UserRoute);
 
-app.get("/", (req, res) => {
-	res.render("index", {});
-});
 app.listen(PORT, () => {
 	console.log("Server listening on port " + PORT);
 });
