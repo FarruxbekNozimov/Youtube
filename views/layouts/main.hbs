@@ -1,0 +1,16 @@
+<html lang="en">
+  {{>head}}
+	<body>
+    {{#unless form }}
+      {{>navbar}}
+    {{/unless}}
+    <div class="bottom">
+      {{#unless form }}
+        {{>sidebar}}
+      {{/unless}}
+      <div class="main">
+        {{{body}}}
+      </div>
+    </div>
+	</body>
+</html>
