@@ -4,6 +4,7 @@ const PORT = 8080;
 const { create } = require("express-handlebars");
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
+const moment = require("moment");
 
 // REQUIRE ROUTES
 const AuthRoute = require("./routes/auth.js");
@@ -15,6 +16,23 @@ const UserMiddleware = require("./middleware/user.js");
 const hbs = create({
 	defaultLayout: "main",
 	extname: "hbs",
+	helpers: {
+		getLength: function (a) {
+			return a.length;
+		},
+		agoDate: function (a) {
+			return moment(a).fromNow();
+		},
+		watchVideoURL: function (a) {
+			return a.slice(3);
+		},
+		getLength: function (a) {
+			return a.length;
+		},
+		textCutter: function (a, len) {
+			return a.slice(0, len);
+		},
+	},
 });
 
 app.use(fileUpload());

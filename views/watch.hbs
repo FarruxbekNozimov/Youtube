@@ -1,0 +1,65 @@
+<div class="watch-container">
+	<div class="watch-video-container">
+		<video class="watch-video" width="320" height="240" controls>
+			<source src="/videos/{{watch.video}}" />
+		</video>
+	</div>
+	<div class="watch-bottom">
+		<div class="watch-comments">
+			<div class="watch-video-description">
+				<img src="/avatars/{{watch.user.avatar}}" class="watch-video-avatar" />
+				<div class="watch-video-left">
+					<span class="watch-react-desc">
+						<button class="watch-reaction" name="like">👍
+							{{getLength watch.likes}}</button>
+						<button class="watch-reaction" name="like">💬
+							{{getLength watch.comments}}</button>
+					</span>
+					<h2 class="watch-video-title">{{watch.title}}</h2>
+					<span class="watch-video-channel">{{watch.user.username}}</span>
+				</div>
+			</div>
+			<h4 class="watch-title">Comments</h4>
+			<div class="comment">
+				<img src="/img/1.png" class="commentAvatar" />
+				<div class="commentLeft">
+					<div class="commentName">Toshmat</div>
+					<div class="commentDesc">Hello very good video</div>
+				</div>
+			</div>
+			<div class="sendComment">
+				<img src="/avatars/{{currentUser.avatar}}" class="sendComment-avatar" />
+				<form
+					action="/comment/{{watchVideoURL watch.id}}"
+					method="POST"
+					class="sendingArea"
+				>
+					<input type="text" class="sendInput" name="comment" />
+					<button type="submit" class="send-button">💭</button>
+				</form>
+			</div>
+		</div>
+		<div class="watch-ad">
+			{{#each posts}}
+				<a href="/watch/{{watchVideoURL id}}" class="ad">
+					<video class="watch-ad-video" width="320" height="240" controls>
+						<source src="/videos/{{video}}" />
+					</video>
+					<div class="watch-ad-left">
+						<div class="watch-ad-right">
+							<img
+								src="/avatars/{{this.user.avatar}}"
+								class="watch-add-avatar"
+							/>
+							<span class="watch-ad-username">{{textCutter
+									this.user.username
+									10
+								}}</span>
+						</div>
+						<span class="watch-ad-title">{{textCutter title 20}} 👉</span>
+					</div>
+				</a>
+			{{/each}}
+		</div>
+	</div>
+</div>
