@@ -26,10 +26,13 @@
 	</div>
 	<div class="adminRight">
 		{{#each userPosts}}
-			<a href="/watch/{{watchVideoURL id}}" class="adminCard">
+			<div class="adminCard">
 				<video width="320" height="240" controls>
 					<source src="/videos/{{video}}" />
 				</video>
+				<form action="/delete/{{watchVideoURL id}}" method="POST">
+					<button class="adminDeleteBtn">❌</button>
+				</form>
 				<div class="bottomCard">
 					<div class="bottomCardLeft">
 						<img
@@ -39,7 +42,11 @@
 						/>
 					</div>
 					<div class="bottomCardRight">
-						<div class="bottomCardTitle">
+						<div
+							class="bottomCardTitle"
+							id="{{id}}"
+							ondblclick="doubleClick(this)"
+						>
 							{{title}}
 						</div>
 						<div class="cardDescription">
@@ -51,7 +58,7 @@
 						</div>
 					</div>
 				</div>
-			</a>
+			</div>
 		{{/each}}
 	</div>
 </div>

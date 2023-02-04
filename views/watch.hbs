@@ -10,23 +10,27 @@
 				<img src="/avatars/{{watch.user.avatar}}" class="watch-video-avatar" />
 				<div class="watch-video-left">
 					<span class="watch-react-desc">
-						<button class="watch-reaction" name="like">👍
-							{{getLength watch.likes}}</button>
+						<form action="/like/{{watchVideoURL watch.id}}" method="POST">
+							<button class="watch-reaction" name="like">👍
+								{{getLength watch.likes}}</button>
+						</form>
 						<button class="watch-reaction" name="like">💬
-							{{getLength watch.comments}}</button>
+							{{watch.comments}}</button>
 					</span>
 					<h2 class="watch-video-title">{{watch.title}}</h2>
 					<span class="watch-video-channel">{{watch.user.username}}</span>
 				</div>
 			</div>
 			<h4 class="watch-title">Comments</h4>
-			<div class="comment">
-				<img src="/img/1.png" class="commentAvatar" />
-				<div class="commentLeft">
-					<div class="commentName">Toshmat</div>
-					<div class="commentDesc">Hello very good video</div>
+			{{#each watchComments}}
+				<div class="comment">
+					<img src="/avatars/{{user.avatar}}" class="commentAvatar" />
+					<div class="commentLeft">
+						<div class="commentName">{{user.username}}</div>
+						<div class="commentDesc">{{text}}</div>
+					</div>
 				</div>
-			</div>
+			{{/each}}
 			<div class="sendComment">
 				<img src="/avatars/{{currentUser.avatar}}" class="sendComment-avatar" />
 				<form

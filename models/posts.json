@@ -6,7 +6,7 @@
 		"title": "Salom",
 		"views": [],
 		"likes": [],
-		"comments": [],
+		"comments": 2,
 		"createdAt": "2023-02-04T05:38:35.237Z"
 	},
 	{
@@ -16,7 +16,7 @@
 		"title": "This video good",
 		"views": [],
 		"likes": [],
-		"comments": [],
+		"comments": 0,
 		"createdAt": "2023-02-04T05:41:10.402Z"
 	},
 	{
@@ -26,7 +26,7 @@
 		"title": "New Post Alibek",
 		"views": [],
 		"likes": [],
-		"comments": [],
+		"comments": 0,
 		"createdAt": "2023-02-04T06:28:16.506Z"
 	}
 ]

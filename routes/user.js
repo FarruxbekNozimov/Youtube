@@ -109,7 +109,7 @@ router.get("/watch/:video", AuthMiddleware, (req, res) => {
 	let videoId = req.params.video;
 	let posts = jsonReader("posts");
 	let users = jsonReader("users");
-	let watch;
+	let comments = jsonReader("comments");
 	for (let i in posts) {
 		for (let j in users) {
 			if (posts[i].userId == users[j].id) {
@@ -118,31 +118,40 @@ router.get("/watch/:video", AuthMiddleware, (req, res) => {
 			}
 		}
 	}
-	for (let i in posts) {
-		if (posts[i].id == `id-${videoId}`) {
-			watch = posts[i];
-		}
-	}
+	let watch = posts.find((p) => p.id == `id-${videoId}`);
 	posts = posts.filter((p) => p.id != watch.id);
+	let watchComments = comments.filter((c) => c.postId == watch.id);
+	for (let i in watchComments) {
+		watchComments[i].user = users.find((u) => u.id == watchComments[i].userId);
+	}
 	res.render("watch", {
 		currentUser: req.user,
 		watch,
 		users,
 		posts,
+		watchComments,
 	});
 });
 
-router.get("/like/:videoId", (req, res) => {
+router.post("/like/:videoId", AuthMiddleware, (req, res) => {
 	let videoId = req.params.videoId;
 	let posts = jsonReader("posts");
 	let post = posts.find((p) => p.id == `id-${videoId}`);
+	console.log(videoId, posts, post);
 });
 
-router.post("/comment/:videoId", (req, res) => {
+router.post("/comment/:videoId", AuthMiddleware, (req, res) => {
 	let videoId = req.params.videoId;
 	let { comment } = req.body;
 	if (!comment) return res.status(200).redirect(`/watch/${videoId}`);
 	let comments = jsonReader("comments");
+	let posts = jsonReader("posts");
+	for (let i in posts) {
+		if (posts[i].id == `id-${videoId}`) {
+			posts[i].comments += 1;
+			break;
+		}
+	}
 	comments.push({
 		id: "id-" + Date.now().toString(),
 		postId: "id-" + videoId,
@@ -150,7 +159,17 @@ router.post("/comment/:videoId", (req, res) => {
 		text: comment,
 	});
 	jsonWriter("comments", comments);
+	jsonWriter("posts", posts);
 	return res.status(200).redirect(`/watch/${videoId}`);
+});77
+
+router.post("/delete/:videoId", AuthMiddleware, (req, res) => {
+	let videoId = req.params.videoId;
+	
+	// let posts = jsonReader("posts");
+	// posts = posts.filter((p) => p.id != `id-${videoId}`);
+	// jsonWriter("posts", posts);
+	// return res.status(200).redirect(`/admin`);
 });
 
 module.exports = router;
