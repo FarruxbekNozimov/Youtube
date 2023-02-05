@@ -1,34 +1,26 @@
 <nav class="navbarTop">
 	<div class="navleft">
 		<div class="burgerIcon"><i class="bi bi-list"></i></div>
-		<a href="/" class="logo"><img
-				src="/img/logo1.png"
-				alt=""
-				class="logoYouTube"
-			/></a>
+		<a href="/" class="logo"><img src="/img/logo1.png" alt="" class="logoYouTube" /></a>
 	</div>
 	<form class="navCenter" action="/" method="GET">
 		<div class="searchContainer">
-			<input
-				name="search"
-				placeholder="Search"
-				type="text"
-				class="searchInput"
-			/>
+			<input name="search" placeholder="Search" type="text" class="searchInput" list="suggestions" autocomplete="off"/>
+			<datalist id="suggestions">
+				{{#each posts}}
+					<option value="{{title}}">
+				{{/each}}
+			</datalist>
 			<div class="searchIcon"><i class="bi bi-search"></i></div>
 		</div>
-		<div class="voiceIcon"><i class="bi bi-mic"></i></div>
+		<button class="voiceIcon"><i class="bi bi-mic"></i></button>
 	</form>
 	<div class="navEnd">
 		<div class="streamIcon"><i class="bi bi-camera-reels"></i></div>
 		<div class="notificationIcon"><i class="bi bi-bell"></i></div>
 		<a href="/admin">
 			<div class="avatarUser">
-				<img
-					src="/avatars/{{currentUser.avatar}}"
-					alt="avatarImg"
-					class="avatarImg"
-				/>
+				<img src="/avatars/{{currentUser.avatar}}" alt="avatarImg" class="avatarImg" />
 			</div>
 		</a>
 	</div>

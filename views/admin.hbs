@@ -42,13 +42,15 @@
 						/>
 					</div>
 					<div class="bottomCardRight">
-						<div
+						<input
+							type="read"
 							class="bottomCardTitle"
 							id="{{id}}"
 							ondblclick="doubleClick(this)"
-						>
-							{{title}}
-						</div>
+							onblur="sendData(this)"
+							value="{{title}}"
+							readonly
+						/>
 						<div class="cardDescription">
 							{{this.user.username}}
 						</div>

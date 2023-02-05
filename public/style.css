@@ -121,6 +121,9 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border: none;
+  color: #fff;
+  font-size: 20px;
 }
 
 .streamIcon, .notificationIcon {
@@ -292,13 +295,22 @@ body {
 }
 
 .bottomCardTitle {
+  width: 100%;
   font-weight: bold;
   font-size: 17px;
   color: rgba(255, 255, 255, 0.9);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 5px 3px;
+  border-radius: 10px;
 }
 
 .cardDescription {
-  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.7);
@@ -617,8 +629,6 @@ video {
   margin-right: 20px;
 }
 
-.watch-video-left {}
-
 .watch-video-channel {
   font-size: 15px;
   color: #999;
@@ -742,4 +752,25 @@ video {
 .ad video {
   height: 200px;
   width: 300px;
+}
+
+.cardDescription-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.downloadIcon {
+  display: flex;
+  background: rgba(255, 255, 255, 0.5);
+  color: #000;
+  padding: 3px 10px;
+  font-size: 17px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.downloadIcon:hover {
+  background: #fff;
 }

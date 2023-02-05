@@ -13,6 +13,7 @@ router.get("/register", (req, res) => {
 router.post("/register", (req, res) => {
 	const { username, password } = req.body;
 	let users = jsonReader("users");
+	console.log(req.files, username, password);
 	if (!req.files || !username || !password) {
 		return res.render("register", {
 			form: true,

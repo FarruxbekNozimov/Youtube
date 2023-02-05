@@ -21,7 +21,7 @@ const hbs = create({
 			return a.length;
 		},
 		agoDate: function (a) {
-			return moment(a).fromNow();
+			return moment(a).format("Y/MM/DD HH:mm");
 		},
 		watchVideoURL: function (a) {
 			return a.slice(3);
